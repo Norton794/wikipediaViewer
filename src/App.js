@@ -18,7 +18,7 @@ class App extends Component {
   render() {
     const { list, searchTerm } = this.state;
     return (
-      <div>
+      <div className="page">
         <h1>WikiViewer</h1>
 
         <a
