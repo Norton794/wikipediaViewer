@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 import {
   BASE,
@@ -77,9 +78,7 @@ class App extends Component {
           onChange={this.onSearchChange}
           value={searchTerm}
           onSubmit={this.onSearchSubmit}
-        >
-          Search with the Wikipedia API
-        </Search>
+        ></Search>
         {error ? (
           <p className="error">Something went wrong :(</p>
         ) : (
@@ -101,6 +100,17 @@ const Search = ({ value, onChange, children, onSubmit }) => (
   </form>
 );
 
+Search.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  children: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
+};
+
+Search.defaultProps = {
+  children: "Search with the Wikipedia API",
+};
+
 const List = ({ list }) => {
   return (
     <div className="container">
@@ -118,6 +128,10 @@ const List = ({ list }) => {
         ))}
     </div>
   );
+};
+
+List.propTypes = {
+  list: PropTypes.object.isRequired,
 };
 
 export default App;
