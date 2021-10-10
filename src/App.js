@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
 
-const BASE = "https://en.wikipedia.org/w/api.php";
-const ACTION = "action=query";
-const LIST = "list=search";
-const SEARCH = "srsearch=";
-const DEFAULT_SEARCH = "React";
-const FORMAT = "format=json";
-const ORIGIN = "origin=*";
+import {
+  BASE,
+  ACTION,
+  LIST,
+  SEARCH,
+  DEFAULT_SEARCH,
+  FORMAT,
+  ORIGIN,
+  RANDOM,
+} from "./constants/index.js";
 
 class App extends Component {
   _isMounted = false;
@@ -66,10 +69,7 @@ class App extends Component {
       <div className="page">
         <h1>WikiViewer</h1>
 
-        <a
-          className="random"
-          href="https://en.wikipedia.org/wiki/Special:Random"
-        >
+        <a className="random" href={RANDOM}>
           Go to a random article
         </a>
 
@@ -80,7 +80,11 @@ class App extends Component {
         >
           Search with the Wikipedia API
         </Search>
-        {error ? <p>Something went wrong.</p> : <List list={result} />}
+        {error ? (
+          <p className="error">Something went wrong :(</p>
+        ) : (
+          <List list={result} />
+        )}
       </div>
     );
   }
@@ -117,3 +121,5 @@ const List = ({ list }) => {
 };
 
 export default App;
+
+export { Search, List };

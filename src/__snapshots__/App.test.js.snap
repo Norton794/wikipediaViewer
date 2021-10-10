@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App has a valid snapshot 1`] = `
+<div
+  className="page"
+>
+  <h1>
+    WikiViewer
+  </h1>
+  <a
+    className="random"
+    href="https://en.wikipedia.org/wiki/Special:Random"
+  >
+    Go to a random article
+  </a>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      onChange={[Function]}
+      placeholder="Search with the Wikipedia API"
+      type="text"
+      value="React"
+    />
+  </form>
+  <div
+    className="container"
+  />
+</div>
+`;
+
+exports[`List has a valid snapshot 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="cards"
+  >
+    <a
+      href="https://en.wikipedia.org/?curid=68266160"
+    >
+      <h3
+        className="pgTitle"
+      >
+        Deadpool and Korg React
+      </h3>
+      <div
+        className="snippet"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>Deadpool and Korg <span class=\\"searchmatch\\">React</span> is a 2021 American superhero promotional short film featuring the Marvel Comics characters Deadpool and Korg. The film was directed</p>",
+          }
+        }
+      />
+    </a>
+  </div>
+  <div
+    className="cards"
+  >
+    <a
+      href="https://en.wikipedia.org/?curid=14985089"
+    >
+      <h3
+        className="pgTitle"
+      >
+        React Quotes
+      </h3>
+      <div
+        className="snippet"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>&quot;<span class=\\"searchmatch\\">React</span> Quotes&quot; is the fifth episode of the fifth season of the HBO original series, The Wire. The episode was written by David Mills from a story by David</p>",
+          }
+        }
+      />
+    </a>
+  </div>
+  <div
+    className="cards"
+  >
+    <a
+      href="https://en.wikipedia.org/?curid=43361791"
+    >
+      <h3
+        className="pgTitle"
+      >
+        React to That
+      </h3>
+      <div
+        className="snippet"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p><span class=\\"searchmatch\\">React</span> to That (stylized as <span class=\\"searchmatch\\">React</span>ToThat) is an American television series developed by Nick Cannon and Benny and Rafi Fine. It aired on Nickelodeon for</p>",
+          }
+        }
+      />
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Search has a valid snapshot 1`] = `
+<form>
+  <input
+    placeholder="Search"
+    type="text"
+  />
+</form>
+`;
