@@ -22,6 +22,7 @@ class App extends Component {
       result: null,
       searchTerm: DEFAULT_SEARCH,
       error: null,
+      isLoading: false,
     };
     this.setSearchWiki = this.setSearchWiki.bind(this);
     this.fetchSearchWiki = this.fetchSearchWiki.bind(this);
@@ -30,7 +31,7 @@ class App extends Component {
   }
 
   setSearchWiki(result) {
-    this.setState({ result });
+    this.setState({ result, isLoading: false });
   }
 
   onSearchChange(e) {
@@ -38,6 +39,8 @@ class App extends Component {
   }
 
   fetchSearchWiki(searchTerm) {
+    this.setState({ isLoading: true });
+
     axios(
       `${BASE}?${ACTION}&${LIST}&${SEARCH}${searchTerm}&${FORMAT}&${ORIGIN}`
     )
@@ -64,7 +67,7 @@ class App extends Component {
   }
 
   render() {
-    const { result, searchTerm, error } = this.state;
+    const { result, searchTerm, error, isLoading } = this.state;
 
     return (
       <div className="page">
@@ -79,11 +82,10 @@ class App extends Component {
           value={searchTerm}
           onSubmit={this.onSearchSubmit}
         ></Search>
-        {error ? (
+        {error ? 
           <p className="error">Something went wrong :(</p>
-        ) : (
-          <List list={result} />
-        )}
+         : <ListWithLoading list={result} isLoading={isLoading}/>
+        }
       </div>
     );
   }
@@ -134,6 +136,21 @@ List.propTypes = {
   list: PropTypes.object.isRequired,
 };
 
+const Loading = () => (
+  <div class="ball-one">
+    <div class="ball-two">
+      <div class="ball-three"></div>
+    </div>
+  </div>
+);
+
+const withLoading =
+  (Component) =>
+  ({ isLoading, ...rest }) =>
+    isLoading ? <Loading /> : <Component {...rest} />;
+
+const ListWithLoading = withLoading(List);
+
 export default App;
 
-export { Search, List };
+export { Search, List, Loading };
