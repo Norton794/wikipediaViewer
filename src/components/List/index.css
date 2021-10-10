@@ -1,0 +1,37 @@
+
+
+/* list */
+.cards{
+    background-color: #f1f2ee;
+    color: #000100;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px 20px;
+    cursor: pointer;
+    transition: transform 1s;
+  }
+  
+  .cards:hover{
+    box-shadow: 7px 7px 7px 7px rgba(0, 0, 0, 0.2);
+    
+  }
+  
+  
+  .pgTitle{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+  }
+  
+  
+  .snippet{
+    margin-bottom: 20px;
+  }
+  
+  .container{
+    margin-top: 30px;
+    padding: 10px 10px;
+  }
+  
+  

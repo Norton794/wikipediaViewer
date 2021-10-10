@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import "./App.css";
 import axios from "axios";
-import PropTypes from "prop-types";
-
+import './index.css';
 import {
   BASE,
   ACTION,
@@ -12,7 +10,11 @@ import {
   FORMAT,
   ORIGIN,
   RANDOM,
-} from "./constants/index.js";
+} from "../../constants/index";
+
+import {Search} from '../../components/Search/index';
+
+import {ListWithLoading, Loading} from '../../components/Loading/index';
 
 class App extends Component {
   _isMounted = false;
@@ -91,66 +93,9 @@ class App extends Component {
   }
 }
 
-const Search = ({ value, onChange, children, onSubmit }) => (
-  <form onSubmit={onSubmit}>
-    <input
-      type="text"
-      value={value}
-      onChange={onChange}
-      placeholder={children}
-    />
-  </form>
-);
 
-Search.propTypes = {
-  value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  children: PropTypes.string,
-  onSubmit: PropTypes.func.isRequired,
-};
 
-Search.defaultProps = {
-  children: "Search with the Wikipedia API",
-};
 
-const List = ({ list }) => {
-  return (
-    <div className="container">
-      {list &&
-        list.query.search.map((item) => (
-          <div className="cards" key={item.pageid}>
-            <a href={`https://en.wikipedia.org/?curid=${item.pageid}`}>
-              <h3 className="pgTitle">{item.title}</h3>
-              <div
-                className="snippet"
-                dangerouslySetInnerHTML={{ __html: `<p>${item.snippet}</p>` }}
-              />
-            </a>
-          </div>
-        ))}
-    </div>
-  );
-};
-
-List.propTypes = {
-  list: PropTypes.object.isRequired,
-};
-
-const Loading = () => (
-  <div class="ball-one">
-    <div class="ball-two">
-      <div class="ball-three"></div>
-    </div>
-  </div>
-);
-
-const withLoading =
-  (Component) =>
-  ({ isLoading, ...rest }) =>
-    isLoading ? <Loading /> : <Component {...rest} />;
-
-const ListWithLoading = withLoading(List);
 
 export default App;
 
-export { Search, List, Loading };
