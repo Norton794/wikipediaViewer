@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import axios from "axios";
 
 const BASE = "https://en.wikipedia.org/w/api.php";
 const ACTION = "action=query";
@@ -10,6 +11,7 @@ const FORMAT = "format=json";
 const ORIGIN = "origin=*";
 
 class App extends Component {
+  _isMounted = false;
   constructor() {
     super();
     this.state = {
@@ -32,12 +34,11 @@ class App extends Component {
   }
 
   fetchSearchWiki(searchTerm) {
-    fetch(
+    axios(
       `${BASE}?${ACTION}&${LIST}&${SEARCH}${searchTerm}&${FORMAT}&${ORIGIN}`
     )
-      .then((response) => response.json())
-      .then((result) => this.setSearchWiki(result))
-      .catch((error) => this.setState({ error }));
+      .then((result) => this._isMounted && this.setSearchWiki(result.data))
+      .catch((error) => this._isMounted && this.setState({ error }));
   }
 
   onSearchSubmit(e) {
@@ -47,15 +48,19 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
+
     const { searchTerm } = this.state;
 
     this.fetchSearchWiki(searchTerm);
   }
 
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   render() {
     const { result, searchTerm, error } = this.state;
-
-    
 
     return (
       <div className="page">
@@ -95,17 +100,18 @@ const Search = ({ value, onChange, children, onSubmit }) => (
 const List = ({ list }) => {
   return (
     <div className="container">
-      {list && list.query.search.map((item) => (
-        <div className="cards" key={item.pageid}>
-          <a href={`https://en.wikipedia.org/?curid=${item.pageid}`}>
-            <h3 className="pgTitle">{item.title}</h3>
-            <div
-              className="snippet"
-              dangerouslySetInnerHTML={{ __html: `<p>${item.snippet}</p>` }}
-            />
-          </a>
-        </div>
-      ))}
+      {list &&
+        list.query.search.map((item) => (
+          <div className="cards" key={item.pageid}>
+            <a href={`https://en.wikipedia.org/?curid=${item.pageid}`}>
+              <h3 className="pgTitle">{item.title}</h3>
+              <div
+                className="snippet"
+                dangerouslySetInnerHTML={{ __html: `<p>${item.snippet}</p>` }}
+              />
+            </a>
+          </div>
+        ))}
     </div>
   );
 };
