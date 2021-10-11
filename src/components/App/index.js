@@ -14,7 +14,7 @@ import {
 
 import {Search} from '../../components/Search/index';
 
-import {ListWithLoading, Loading} from '../../components/Loading/index';
+import {ListWithLoading} from '../../components/Loading/index';
 
 class App extends Component {
   _isMounted = false;
