@@ -24,8 +24,16 @@ exports[`App has a valid snapshot 1`] = `
     />
   </form>
   <div
-    className="container"
-  />
+    className="ball-one"
+  >
+    <div
+      className="ball-two"
+    >
+      <div
+        className="ball-three"
+      />
+    </div>
+  </div>
 </div>
 `;
 
@@ -95,6 +103,20 @@ exports[`List has a valid snapshot 1`] = `
         }
       />
     </a>
+  </div>
+</div>
+`;
+
+exports[`Loading has a valid snapshot 1`] = `
+<div
+  className="ball-one"
+>
+  <div
+    className="ball-two"
+  >
+    <div
+      className="ball-three"
+    />
   </div>
 </div>
 `;

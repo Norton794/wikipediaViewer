@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import './index.css';
 export const Search = ({ value, onChange, children, onSubmit }) => (
     <form onSubmit={onSubmit}>
       <input
@@ -12,9 +13,9 @@ export const Search = ({ value, onChange, children, onSubmit }) => (
   
   Search.propTypes = {
     value: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
     children: PropTypes.string,
-    onSubmit: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func,
   };
   
   Search.defaultProps = {

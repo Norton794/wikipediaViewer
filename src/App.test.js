@@ -3,7 +3,10 @@ import ReactDOM from "react-dom";
 import renderer from "react-test-renderer";
 import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import App, { Search, List } from "./App";
+import App from "../src/components/App/index";
+import { Search } from "../src/components/Search/index";
+import { List } from "../src/components/List/index";
+import { Loading } from "../src/components/Loading/index";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -92,4 +95,22 @@ describe("List", () => {
 
     expect(element.find(".cards").length).toBe(3);
   });
+});
+
+
+
+describe("Loading", () => {
+
+  it("renders without crashing", () => {
+    const div = document.createElement("div");
+    ReactDOM.render(<Loading />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
+  test("has a valid snapshot", () => {
+    const component = renderer.create(<Loading />);
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
 });

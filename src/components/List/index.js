@@ -20,5 +20,5 @@ export const List = ({ list }) => {
   };
   
   List.propTypes = {
-    list: PropTypes.object.isRequired,
+    list: PropTypes.object,
   };
